@@ -210,3 +210,28 @@ def check_win(word, revealed):
         not c.isalpha() or c.lower() in revealed
         for c in word
     )
+
+def play_game():
+    difficulty = choose_difficulty()
+    max_lives = get_lives(difficulty)
+    lives = max_lives
+    word = choose_word_by_difficulty(difficulty)
+
+    revealed_letters = set()
+    wrong_letters = set()
+    guessed_letters = set()
+
+    print(f"\n🌍 HANGMAN – Difficulty: {difficulty.upper()} 🌍\n")
+
+    while True:
+        display_state(word, revealed_letters, wrong_letters, lives, max_lives)
+
+        guess = get_guess(guessed_letters)
+
+        if guess == "quit":
+            print("Good-bye!")
+            break
+        if guess in (None, "repeat"):
+            continue
+
+        guessed_letters.add(guess)
