@@ -143,7 +143,7 @@ HANGMANPICS = [
 def choose_difficulty():
     print("Choose difficulty: easy / medium / hard")
     while True:
-        choice = input("> ").lower()
+        choice = input(">").lower()
         if choice in ("easy", "medium", "hard"):
             return choice
         print("Invalid difficulty.")
@@ -151,4 +151,5 @@ def choose_difficulty():
 
 def get_lives(difficulty):
     return {"easy": 6, "medium": 5, "hard": 4}[difficulty]
-
+def choose_word_by_difficulty(difficulty):
+    words = []
