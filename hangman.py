@@ -235,3 +235,20 @@ def play_game():
             continue
 
         guessed_letters.add(guess)
+
+        if guess in word.lower():
+            revealed_letters.add(guess)
+            if check_win(word, revealed_letters):
+                display_state(word, revealed_letters, wrong_letters, lives, max_lives)
+                print("🎉 YOU WIN! 🎉")
+                break
+        else:
+            wrong_letters.add(guess)
+            lives -= 1
+            if lives == 0:
+                print(HANGMANPICS[-1])
+                print(f"💀 YOU LOST! The country was: {word}")
+                break
+
+if _name_ == "_main_":
+    play_game()
