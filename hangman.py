@@ -140,26 +140,15 @@ HANGMANPICS = [
 =======
 """
 ]
-def choose_random_country():
-    entry = random.choice(countries_and_capitals())
-    country, _ = entry.split(" | ")
-    return country
+def choose_difficulty():
+    print("Choose difficulty: easy / medium / hard")
+    while True:
+        choice = input("> ").lower()
+        if choice in ("easy", "medium", "hard"):
+            return choice
+        print("Invalid difficulty.")
 
 
-def display_state(word, revealed, wrong_letters, lives, max_lives):
-    print(HANGMANPICS[max_lives - lives])
-    print("Word: ", end="")
+def get_lives(difficulty):
+    return {"easy": 6, "medium": 5, "hard": 4}[difficulty]
 
-    for c in word:
-        if not c.isalpha() or c.lower() in revealed:
-            print(c, end=" ")
-        else:
-            print("_", end=" ")
-
-    print("\n")
-
-    if wrong_letters:
-        print("Wrong letters:", ", ".join(sorted(wrong_letters)))
-
-    print(f"Lives left: {lives}")
-    print("-" * 30)
