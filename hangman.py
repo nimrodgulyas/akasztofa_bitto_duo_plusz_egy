@@ -167,3 +167,21 @@ def choose_word_by_difficulty(difficulty):
             words.append(country)
 
     return random.choice(words)
+
+def display_state(word, revealed, wrong_letters, lives, max_lives):
+    print(HANGMANPICS[max_lives - lives])
+    print("Word: ", end="")
+
+    for c in word:
+        if not c.isalpha() or c.lower() in revealed:
+            print(c, end=" ")
+        else:
+            print("_", end=" ")
+
+    print("\n")
+
+    if wrong_letters:
+        print("Wrong letters:", ", ".join(sorted(wrong_letters)))
+
+    print(f"Lives left: {lives}")
+    print("-" * 30)
