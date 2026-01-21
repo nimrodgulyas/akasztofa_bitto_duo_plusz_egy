@@ -185,3 +185,28 @@ def display_state(word, revealed, wrong_letters, lives, max_lives):
 
     print(f"Lives left: {lives}")
     print("-" * 30)
+
+def get_guess(guessed_letters):
+    guess = input("Guess a letter (or 'quit'): ").strip()
+
+    if guess.lower() == "quit":
+        return "quit"
+
+    if len(guess) != 1 or not guess.isalpha():
+        print("Please enter ONE letter.")
+        return None
+
+    guess = guess.lower()
+
+    if guess in guessed_letters:
+        print("You already guessed that letter.")
+        return "repeat"
+
+    return guess
+
+
+def check_win(word, revealed):
+    return all(
+        not c.isalpha() or c.lower() in revealed
+        for c in word
+    )
