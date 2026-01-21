@@ -151,5 +151,19 @@ def choose_difficulty():
 
 def get_lives(difficulty):
     return {"easy": 6, "medium": 5, "hard": 4}[difficulty]
+
 def choose_word_by_difficulty(difficulty):
     words = []
+
+    for entry in countries_and_capitals():
+        country = entry.split(" | ")[0]
+        length = sum(1 for c in country if c.isalpha())
+
+        if difficulty == "easy" and length <= 7:
+            words.append(country)
+        elif difficulty == "medium" and 8 <= length <= 10:
+            words.append(country)
+        elif difficulty == "hard" and length >= 11:
+            words.append(country)
+
+    return random.choice(words)
